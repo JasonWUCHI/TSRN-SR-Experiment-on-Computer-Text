@@ -119,7 +119,7 @@ def train():
 
             torch.cuda.empty_cache()
 
-            if j % 200 == 0:
+            if j % 33 == 0:
                 print("Loss: ", loss_im)
                 training_loss.append(loss_im.item())
                 eval(model)
