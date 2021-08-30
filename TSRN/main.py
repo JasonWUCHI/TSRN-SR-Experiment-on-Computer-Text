@@ -129,3 +129,13 @@ def train():
 torch.cuda.empty_cache()
 train()
 
+#evaluation
+import matplotlib.pyplot as plt
+plt.plot(np.linspace(1, len(training_loss) , len(training_loss))/5, training_loss)
+plt.plot(np.linspace(1, len(eval_loss) , len(eval_loss))/5, eval_loss)
+plt.ylabel('Loss')
+plt.xlabel('Epochs')
+plt.locator_params(axis='x', nbins=20)
+plt.legend(['Training Loss', 'Validation Loss'])
+plt.savefig('demo_folder/validation.png')
+plt.show()
