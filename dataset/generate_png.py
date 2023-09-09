@@ -17,46 +17,48 @@ def blur_img(large_img, blur_rate, idx):
                         (256,256) # set fx and fy, not the final size
                         )
     cv2.imwrite('blur_imgs/%d.png'%idx , blur_img)
+    cv2.imwrite('small_imgs/%d.png'%idx, small_img)
 
 def get_png(text, img_name):
     width = 256
     height = 256
-    font_size, gap_x, gap_y = [15,20,28], [9,13,19], [21, 30, 39]
-    char_length_limit, line_limit = [37,25,21], [11,8,6]
-    font_seed = random.randint(0,2)
-    font = ImageFont.truetype("arial.ttf", size=font_size[font_seed])
-
+    font = ImageFont.truetype("arial.ttf", size=20)
     img = Image.new('RGB', (width, height), color='white')
     imgDraw = ImageDraw.Draw(img)
 
-    y = 10
     color = [(0,0,0), (36,25,171), (171, 49, 36)]
     text_list = text.split()
     text_list = [text for text in text_list if not has_numbers(text)]
+    start = random.randint(0, len(text_list)-10)
+    word = text_list[start:start+100]
 
-    for _ in range(line_limit[font_seed]):
-        start = random.randint(0, len(text_list)-10)
-        check = 0
-        num = 0
-        while check<char_length_limit[font_seed]:
-            if check+len(text_list[start+num])<char_length_limit[font_seed]:
-                check += len(text_list[start+num])+1
-                num += 1
-            else:
+    x = 10
+    y = 10
+    for w in word:
+        if x+font.getsize(w)[0]+font.getsize(' ')[0] > 246:
+            x = 10
+            y = y+30
+
+            if y+font.getsize(w)[1]>256:
                 break
-        word = text_list[start:start+num]
+
+        color_seed = random.randint(1,20)
+        if color_seed in [13,14]:
+            c = color[1]
+        elif color_seed == 15:
+            c = color[2]
+        else:
+            c = color[0]
+
+        imgDraw.text((x, y), w, font = font, fill=c)
+        x = x+font.getsize(w)[0]+font.getsize(' ')[0]
+
+    img.save("imgs/" + str(img_name) + ".png")
     
-        x = 10
-        imgDraw.text((x, y), ' '.join(word), font = font, fill=(0,0,0))
-
-        y = y+gap_y[font_seed]
-        img.save("imgs/" + str(img_name) + ".png")
-        
-        open_cv_image = np.array(img) 
-        open_cv_image = open_cv_image[:, :, ::-1].copy() 
-        blur_rate = 0.4 if font_seed==0 else 0.3
-        blur_img(open_cv_image,blur_rate, img_name )
-
+    open_cv_image = np.array(img) 
+    open_cv_image = open_cv_image[:, :, ::-1].copy() 
+    blur_rate = 1/8
+    blur_img(open_cv_image,blur_rate, img_name )
 
 if __name__ == '__main__':
     text_path = "/Users/jason543wu/Desktop/WikiResearch/shared/pair_data_organized_new/"
@@ -70,25 +72,6 @@ if __name__ == '__main__':
                 get_png(lines[0], img_name)
                 img_name += 1
                 if img_name>1000:
-                    sys.exit()
-
-
-'''
-word = text[start:start+30].split()
-    
-        x = 10
-        for w in word:
-            color_seed = random.randint(1,20)
-            if color_seed in [13,14]:
-                c = color[1]
-            elif color_seed == 15:
-                c = color[2]
-            else:
-                c = color[0]
-
-            imgDraw.text((x, y), w, font = font, fill=c)
-            x = x+len(w)*13
-
-        y = y+30
-        img.save("imgs/" + str(img_name) + ".png")
-'''
+                    break
+        if img_name>100:
+            break
