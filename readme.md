@@ -8,11 +8,16 @@ This repo examines the super-resolution effects on computer texts with different
 
 
 ## Explore
-We found that TSRN has the problem of generating the color of the texts properly, which increases the difficulty of recognizing the words.
+1. We found that TSRN has the problem of generating the color of the texts properly, which increases the difficulty of recognizing the words.
+2. We found that generating the gray scale along gives better text recognition rate compare to generating words with color
 
 ## Possible Solution
+- Sep 4
 - Use an additional Conv Layer specifically for handling the color task
 - Design a loss for the color
+- Sep 16
+- Set up two stream, one for gray scale prediction, another, for colorization
+- Loss so that for the pixel given attention based on gray scale prediction, the color L2 length is long
 
 ## Reference
 
