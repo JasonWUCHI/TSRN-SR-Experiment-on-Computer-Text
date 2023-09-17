@@ -10,6 +10,13 @@ This repo examines the super-resolution effects on computer texts with different
 ## Explore
 1. We found that TSRN has the problem of generating the color of the texts properly, which increases the difficulty of recognizing the words.
 2. We found that generating the gray scale along gives better text recognition rate compare to generating words with color
+3. GP Loss has the problem of "Round Shape", how to penalize color consistency
+
+## Progress
+We can see improvements in MSE Loss and GP Loss after using 2 stream technique
+1. color-structure 2 stream: Validation Gray MSE: 0.0106, Validation GP Loss: 0.0331, Validation MSEALL: 0.0099
+2. tsrn: Validation MSE Loss:  0.0108 Validation GP Loss:  0.0335
+
 
 ## Possible Solution
 - Sep 4
