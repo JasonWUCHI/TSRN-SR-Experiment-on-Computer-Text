@@ -6,12 +6,6 @@ This repo examines the super-resolution effects on computer texts with different
 - Text Image Generator
 - Super-Resolution Model: An implementation of TSRN [1] Super Resolution Model and Experiment result on the self-collected dataset
 
-## Sample Result
-<p align="center">
-  <img src="assets/Picture1.png" />
-</p>
-
-
 ## Explore
 1. We found that TSRN has the problem of generating the color of the texts properly, which increases the difficulty of recognizing the words.
 2. We found that generating the gray scale along gives better text recognition rate compare to generating words with color
@@ -22,6 +16,10 @@ We can see improvements in MSE Loss and GP Loss after using 2 stream technique
 1. color-structure 2 stream: Validation Gray MSE: 0.0106, Validation GP Loss: 0.0331, Validation MSEALL: 0.0099
 2. tsrn: Validation MSE Loss:  0.0108 Validation GP Loss:  0.0335
 
+## Sample Result
+<p align="center">
+  <img src="assets/Picture1.png" width="400"/>
+</p>
 
 ## Possible Solution
 - Sep 4
