@@ -6,6 +6,9 @@ This repo examines the super-resolution effects on computer texts with different
 - Text Image Generator
 - Super-Resolution Model: An implementation of TSRN [1] Super Resolution Model and Experiment result on the self-collected dataset
 
+## Sample Result
+![sampleresult](assets/Picture1.png)
+
 
 ## Explore
 1. We found that TSRN has the problem of generating the color of the texts properly, which increases the difficulty of recognizing the words.
@@ -27,5 +30,4 @@ We can see improvements in MSE Loss and GP Loss after using 2 stream technique
 - Loss so that for the pixel given attention based on gray scale prediction, the color L2 length is long
 
 ## Reference
-
 [1] Wang, W., Xie, E., Liu, X., Wang, W., Liang, D., Shen, C., & Bai, X. (2020). Scene text image super-resolution in the wild. In Computer Vision–ECCV 2020: 16th European Conference, Glasgow, UK, August 23–28, 2020, Proceedings, Part X 16 (pp. 650-666). Springer International Publishing.
