@@ -7,7 +7,9 @@ This repo examines the super-resolution effects on computer texts with different
 - Super-Resolution Model: An implementation of TSRN [1] Super Resolution Model and Experiment result on the self-collected dataset
 
 ## Sample Result
-![sampleresult](assets/Picture1.png)
+<p align="center">
+  <img src="assets/Picture1.png" />
+</p>
 
 
 ## Explore
